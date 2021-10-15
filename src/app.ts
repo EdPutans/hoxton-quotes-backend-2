@@ -54,3 +54,7 @@ app.post("/quotes", (req: Request, res) => {
   return res.send(quotes);
 });
 
+app.listen(port, (): void => {
+  // either the types mismatch or err doesnt exist?
+  return console.log(`server is listening on the port ${port}`);
+});
