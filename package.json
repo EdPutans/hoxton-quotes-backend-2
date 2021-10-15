@@ -1,0 +1,18 @@
+{
+  "name": "exercise-one",
+  "version": "1.0.0",
+  "main": "src/app.ts",
+  "author": "Hoxton",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/app.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.2",
+    "typescript": "^4.3.3"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "express": "^4.17.1"
+  }
+}
