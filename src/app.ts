@@ -1,4 +1,4 @@
-import express, { Request as ExpressRequest} from "express";
+import express, { Request as ExpressRequest } from "express";
 import cors from "cors";
 import storedQuotes, { Reference } from "./data/quotes";
 
@@ -16,20 +16,21 @@ app.get("/quotes", (_, res) => {
   res.send(quotes);
 });
 
+
 app.get("/quotes/:id", (req, res) => {
+  if (req.params.id === 'random') {
+    const randomQuoteIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomQuoteIndex];
+
+    res.send(randomQuote);
+  }
+
   const quote = quotes.find((item) => item.id.toString() === req.params.id);
 
   if (!quote) return res.status(404).send("Quote doesn't exist");
 
-  return res.send(quote); 
+  return res.send(quote);
 })
-
-app.get("/quotes/random", (_, res) => {
-  const randomQuoteIndex = Math.floor(Math.random() * quotes.length);
-  const randomQuote = quotes[randomQuoteIndex];
-
-  res.send(randomQuote);
-});
 
 app.post("/quotes", (req: Request, res) => {
   const missingProperty = ['quote', 'first_name', 'last_name', 'age', 'image_url',].find(item => !req.body[item]);
@@ -55,6 +56,5 @@ app.post("/quotes", (req: Request, res) => {
 });
 
 app.listen(port, (): void => {
-  // either the types mismatch or err doesnt exist?
   return console.log(`server is listening on the port ${port}`);
 });
